@@ -1,0 +1,26 @@
+name: Monthly FOI Worker
+
+on:
+  schedule:
+    - cron: '0 10 1,15 * *' # Runs on the 1st and 15th of every month
+  workflow_dispatch:      # Manual trigger button
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run Update Script
+        run: bash update.sh
+
+      - name: Commit and Push
+        run: |
+          git config user.name "ISTAT Worker"
+          git config user.email "istat@istat.it"
+          git add data.json
+          git commit -m "Update FOI data: $(date +'%Y-%m')" || exit 0
+          git push
