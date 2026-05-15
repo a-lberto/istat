@@ -1,4 +1,4 @@
-name: Monthly FOI Worker
+name: Update Worker
 
 on:
   schedule:
@@ -30,8 +30,10 @@ jobs:
           git commit -m "Update data: $(date +'%Y-%m')" || exit 0
           git push
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
+      - name: Configure Pages
+        uses: actions/configure-pages@v5 # Or whatever version you are using
+        with:
+          enablement: true
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
