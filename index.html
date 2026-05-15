@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ISTAT Data API</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: 40px auto; padding: 20px; }
+        h1 { border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        ul { list-style: none; padding: 0; }
+        li { background: #f9f9f9; margin: 10px 0; padding: 15px; border-radius: 5px; border: 1px solid #ddd; }
+        a { color: #0066cc; text-decoration: none; font-weight: bold; font-family: monospace; }
+        a:hover { text-decoration: underline; }
+        .desc { font-size: 0.9em; color: #666; display: block; margin-top: 5px; }
+    </style>
+</head>
+<body>
+    <h1>ISTAT Data API</h1>
+    <p>Automated monthly data from ISTAT.</p>
+    <ul>
+        <li>
+            <a href="foi_monthly_percent_2025.json">foi_monthly_percent_2025.json</a>
+            <span class="desc">Monthly percentage change, FOI base 2025.</span>
+        </li>
+        <li>
+            <a href="foi_monthly_percent_2015.json">foi_monthly_percent_2015.json</a>
+            <span class="desc">Monthly percentage change, FOI base 2015.</span>
+        </li>
+    </ul>
+    <hr>
+    <p><small>Last updated: <span id="last-updated">...</span></small></p>
+    <script>
+        document.getElementById('last-updated').textContent = new Date().toLocaleString();
+    </script>
+</body>
+</html>

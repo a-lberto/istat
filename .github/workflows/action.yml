@@ -2,14 +2,19 @@ name: Monthly FOI Worker
 
 on:
   schedule:
-    - cron: '0 10 1,15 * *' # Runs on the 1st and 15th of every month
+    - cron: '0 10 * * *' # Runs daily at 10:00 UTC
   workflow_dispatch:      # Manual trigger button
+  push:
+    branches: ["main"]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
 
 jobs:
   update:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -19,8 +24,20 @@ jobs:
 
       - name: Commit and Push
         run: |
-          git config user.name "ISTAT Worker"
+          git config user.name "ISTAT"
           git config user.email "istat@istat.it"
-          git add data.json
-          git commit -m "Update FOI data: $(date +'%Y-%m')" || exit 0
+          git add *.json
+          git commit -m "Update data: $(date +'%Y-%m')" || exit 0
           git push
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
