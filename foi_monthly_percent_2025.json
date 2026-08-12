@@ -1,8 +1,8 @@
 {
   "metadata": {
     "source": "ISTAT",
-    "prepared": "2026-07-16T11:40:23Z",
-    "last_update": "2026-07-16T08:00:43.985Z",
+    "prepared": "2026-08-12T11:00:17Z",
+    "last_update": "2026-08-12T08:01:23.193Z",
     "description": "consumer price index for blue and white-collar worker households (base 2025=100) - monthly data",
     "measure": "percentage changes on the same period of the previous year",
     "frequency": "monthly",
@@ -33,6 +33,10 @@
     {
       "date": "2026-06",
       "value": 2.9
+    },
+    {
+      "date": "2026-07",
+      "value": 2.8
     }
   ]
 }
